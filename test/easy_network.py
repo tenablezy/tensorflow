@@ -43,7 +43,7 @@ sess.run(init)     #Very important
 跑 for 迴圈 更新wight201次
 然後每訓練20次 印出一次weight
 """
-for step in range(201):
+for step in range(301):
     sess.run(train)
     if step % 20 ==0:
         print(step,sess.run(Weights),sess.run(biases))
