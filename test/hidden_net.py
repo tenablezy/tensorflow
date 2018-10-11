@@ -70,5 +70,5 @@ for i in range(30000):
         # 要取出預測的數值 必須再run 一次才能取出
         prediction_value = sess.run(prediction, feed_dict={xs: x_data})
         # 每隔0.1 秒畫出來
-        lines = ax.plot(x_data, prediction_value, 'r-', lw=5)
+        lines = ax.plot(x_data, prediction_value, 'r+', lw=5)
         plt.pause(0.1)
