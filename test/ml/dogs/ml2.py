@@ -118,7 +118,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
         train_dir,  # This is the source directory for training images
         target_size=(150, 150),  # All images will be resized to 150x150
-        batch_size=20,
+        batch_size=2,
         # Since we use binary_crossentropy loss, we need binary labels
         class_mode='binary')
 
@@ -126,15 +126,15 @@ train_generator = train_datagen.flow_from_directory(
 validation_generator = test_datagen.flow_from_directory(
         validation_dir,
         target_size=(150, 150),
-        batch_size=20,
+        batch_size=2,
         class_mode='binary')
 
 history = model.fit_generator(
       train_generator,
-      steps_per_epoch=100,  # 2000 images = batch_size * steps
+      steps_per_epoch=1,  # 2000 images = batch_size * steps
       epochs=15,
       validation_data=validation_generator,
-      validation_steps=50,  # 1000 images = batch_size * steps
+      validation_steps=5,  # 1000 images = batch_size * steps
       verbose=2)
 
 import numpy as np
@@ -179,7 +179,7 @@ for layer_name, feature_map in zip(layer_names, successive_feature_maps):
       # Postprocess the feature to make it visually palatable
       x = feature_map[0, :, :, i]
       x -= x.mean()
-      x /= x.std()
+      #x /= x.std()
       x *= 64
       x += 128
       x = np.clip(x, 0, 255).astype('uint8')
